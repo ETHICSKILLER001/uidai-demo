@@ -1,0 +1,128 @@
+project:
+  name: UIDAI-Style Resident Services Portal (Demo)
+  version: 1.0
+  purpose: Hackathon Demonstration
+  disclaimer: >
+    This system is a demo inspired by UIDAI service workflows.
+    No real Aadhaar, UIDAI, or DigiLocker systems are accessed.
+
+architecture:
+  type: Layered Government Digital Architecture
+
+layers:
+  - name: Presentation Layer
+    description: UIDAI-style web interface for residents and admins
+    components:
+      - name: Resident Web Portal
+        technologies:
+          - HTML
+          - CSS
+          - JavaScript
+        features:
+          - OTP Login (Mock)
+          - DigiLocker Login (Mock)
+          - Resident Dashboard
+      - name: Admin Dashboard
+        technologies:
+          - HTML
+          - CSS
+          - JavaScript
+        features:
+          - OTP Request Monitoring
+          - Resident Count
+          - Session Overview
+
+  - name: Application Layer
+    description: Core business logic and authentication services
+    technologies:
+      - Node.js
+      - Express.js
+    services:
+      - name: OTP Service
+        type: Mock Authentication Service
+        functions:
+          - Generate OTP
+          - Verify OTP
+        security:
+          - Server-side OTP generation
+          - Time-bound validity
+
+      - name: DigiLocker Mock Service
+        type: Consent-Based Document Access
+        functions:
+          - Consent Capture
+          - Access Token Generation
+          - Document Retrieval
+        compliance:
+          - No real DigiLocker integration
+          - Token-based authorization
+
+  - name: Data Layer
+    description: Mock Central Identity Repository (CIDR)
+    storage:
+      type: In-Memory / JSON Database
+      file: mockDB.js
+    data_model:
+      resident:
+        fields:
+          - uid
+          - name
+          - dob
+          - gender
+          - mobile
+          - address
+          - status
+          - createdAt
+    constraints:
+      - Read-only identity data
+      - No biometric storage
+
+security:
+  principles:
+    - Data Minimization
+    - Consent-Based Access
+    - Role Separation
+    - Read-Only Identity Records
+  transport:
+    - HTTPS (Production Ready)
+  authentication:
+    - OTP Based Login (Mock)
+    - Token Based Authorization (DigiLocker Mock)
+
+deployment:
+  frontend:
+    platform: Netlify
+    type: Static Web Hosting
+  backend:
+    platform: Render
+    type: REST API Service
+  communication:
+    protocol: HTTPS
+    format: JSON
+
+scalability:
+  approach:
+    - Stateless APIs
+    - Horizontal Scaling
+    - Service Separation
+  future_ready:
+    - Microservices Architecture
+    - Government Sandbox Integration
+
+future_scope:
+  - Integration with UIDAI Sandbox APIs (Authorized Only)
+  - Integration with DigiLocker Sandbox
+  - Audit Log Service
+  - Role-Based Access Control (RBAC)
+
+hackathon_notes:
+  strengths:
+    - Legally compliant demo
+    - Government-grade architecture
+    - Privacy-first design
+    - Scalable infrastructure
+  judging_keywords:
+    - Digital Identity
+    - Consent Architecture
+    - Secure Authentication
+    - Government Services
